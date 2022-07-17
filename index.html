@@ -4,35 +4,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Staatliches&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css" />
     <link rel="stylesheet" href="./assets/css/style.css"/>
-    <title>Weather Dashboard</title>
+    <title>Weather Report</title>
 </head>
-<body class="flex-column min-100-vh">
-    <header class="hero">
-        <h1 class="title-hero">Weather Dashboard</h1>
+
+<body>
+    <header>
+        Weather Dashboard
     </header>
-    
-    <main class="flex-row justify-space-between">
-        <div class="col-12 col-md-4">
-            <div class="card">
-                <form id="user-form" class="card-body">
-                    <h2 class="card-header">Search for a City:</h2>
+
+    <main class="container">
+        <!-- Search for a City Section-->
+        <div class="row">
+            <div class="col-12 col-md-3 p-2 search-column">
+                <form id="city-search" class="border p-2">
+                    <h2>Search for a City:</h2>
                     <input id="city" type="text" class="form-input" autofocus="true" />
-                    <button type="submit" class="btn">Search</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </form>
+                <!-- History buttons section -->
+                <div id="history-search" class="history-search border"></div>
             </div>
-            <div class="card">
-                <hr class="line">
-                <div class="card-body" id="search-buttons">
-                    <!--search history button-->
+            <!--Name of City with current weather -->
+            <div id="current-weather" class="row border city selection" >
+                <div class="col-12 col-md-9">
+                    <h3 id="searched-city"></h3>
+                    <div id="weather-container" class="list-group"></div>
                 </div>
             </div>
+            <!-- Display weather / 5 days -->
+            <div id="five-days" class="row border">
+                <h4 id="forecast" class="col-12 col-md-9 col-md-3"></h4>
+                <div id="display-fivedays" class="d-flex"></div>
+            </div>
         </div>
-        <div class="col-12 col-md-8"></div>
-
     </main>
-
-
-    <script src="./assets/js/single.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
