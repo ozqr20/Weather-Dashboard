@@ -107,11 +107,11 @@ var displayUv = function (data){
 };
 
 var getFiveDays = function(city){
-    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`;
+    var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
     fetch(apiUrl).then(function(response){
         if(response.ok){
             response.json().then(function(data){
-                displayFiveDays(data,city);
+                displayFiveDays(data);
             });
         }else{
             alert("Error");
@@ -122,12 +122,48 @@ var getFiveDays = function(city){
     });
 };
 
+
 var displayFiveDays = function(forecast){
-    displayFiveEl.textContent = ""
+    displayFiveEl.textContent = "";
     titleForecastFiveEl.textContent = "5-Days Forecast:";
     titleForecastFiveEl.classList = "p-3 mb-2 bg-dark text-white";
-    
-}
+
+    var listDays = forecast.list;
+    for ( var i = 0; i < listDays.length; i++){
+        var daily = listDays[i];
+
+        var cardContainer = document.createElement("div");
+        cardContainer.classList = "card bg-info text-light m-2";
+        cardContainer.appendChild(cardContainer);
+
+        var cardDate = document.createElement("h6")
+        cardDate.classList = "card-header text-left";
+        cardDate.textContent = moment.unix(daily.dt).format("MMM D, YYYY");
+        cardContainer.appendChild(cardDate);
+
+        var cardIcon = document.createElement("img")
+        cardIcon.classList = "card-body text-left";
+        cardIcon.setAttribute("src", `https://openweathermap.org/img/wn/${daily.weather[0].icon}.png`);
+        cardContainer.appendChild(cardIcon);
+
+        var cardTemp = document.createElement("span");
+        cardTemp.classList = "card-body text-left";
+        cardTemp.textContent = "Temp: " + daily.main.temp + "ºF";
+        cardContainer.appendChild(cardTemp);
+
+        var cardWind = document.createElement("span");
+        cardWind.classList = "card-body text-left";
+        cardWind.textContent = "Wind " + daily.wind.speed + "MPH";
+        cardContainer.appendChild(cardWind);
+
+        var cardHumidity = document.createElement("span");
+        cardHumidity.classList = "card-body text-left";
+        cardHumidity.textContent = "Humidity: " + daily.main.humidity + "%";
+        cardContainer.appendChild(cardHumidity);
+
+        displayFiveEl.appendChild(cardContainer);
+    };
+};
 
 var formSubmitHandler = function(event){
     event.preventDefault();
@@ -139,5 +175,6 @@ var formSubmitHandler = function(event){
     }
     saveSearch();
 };
+
 
 InputSearchEl.addEventListener("submit",formSubmitHandler);
