@@ -131,10 +131,10 @@ var displayFiveDays = function(forecast){
         var daily = listDays[i];
 
         var cardContainer = document.createElement("div");
-        cardContainer.classList = "card bg-info text-light m-2 border-0";
+        cardContainer.classList = "card bg-info text-light m-2 border-0 w-100";
 
-        var cardDate = document.createElement("h6")
-        cardDate.classList = "card-header text-center border-0";
+        var cardDate = document.createElement("h5")
+        cardDate.classList = "card-header text-center border-0 w-100";
         cardDate.textContent = moment.unix(daily.dt).format("MMM D, YYYY");
         cardContainer.appendChild(cardDate);
 
@@ -144,17 +144,17 @@ var displayFiveDays = function(forecast){
         cardContainer.appendChild(cardIcon);
 
         var cardTemp = document.createElement("span");
-        cardTemp.classList = "card-body text-center border-0";
+        cardTemp.classList = "card-body text-center border-0 w-100";
         cardTemp.textContent = "Temp: " + daily.main.temp + "ºF";
         cardContainer.appendChild(cardTemp);
 
         var cardWind = document.createElement("span");
-        cardWind.classList = "card-body text-center border-0";
+        cardWind.classList = "card-body text-center border-0 w-100";
         cardWind.textContent = "Wind " + daily.wind.speed + "MPH";
         cardContainer.appendChild(cardWind);
 
         var cardHumidity = document.createElement("span");
-        cardHumidity.classList = "card-body text-center border-0";
+        cardHumidity.classList = "card-body text-center border-0 w-100";
         cardHumidity.textContent = "Humidity: " + daily.main.humidity + "%";
         cardContainer.appendChild(cardHumidity);
 
@@ -165,7 +165,7 @@ var displayFiveDays = function(forecast){
 var pastSearch = function(past){
     pastEl = document.createElement("button");
     pastEl.textContent = past;
-    pastEl.classList = "d-flex w-100 btn-light border p-2";
+    pastEl.classList = "d-flex w-100 btn-light border";
     pastEl.setAttribute("data-city", past);
     pastEl.setAttribute("type", "submit");
 

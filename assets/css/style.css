@@ -1,7 +1,6 @@
 * {
-    margin: 4px;
+    margin: 2px;
     padding: 0;
-    box-sizing: border-box;
     font-family: 'Indie Flower', cursive;
   }
 
@@ -16,16 +15,14 @@ header{
     font-size: 8vh;
 }
 
-main{
+ main{
     display: inline;
-    flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
-}
+} 
 
 .btn{
     display: flex;
-    width: 100%;
+    width: 103%;
     align-items: center;
     background-color: rgba(98, 165, 227, 0.995);
     font-weight: bold;
@@ -40,5 +37,17 @@ input{
     height: 40px;
     font-size: 20px;
     margin-bottom: 13px;
-    width: 100%;
+    width: 103%;
+}
+
+.fivecontainer {
+    display: flex;
+    text-align: center;
+}
+
+.search-column {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
 }
