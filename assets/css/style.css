@@ -1,5 +1,5 @@
 * {
-    margin: 2x;
+    
     padding: 0;
     box-sizing: border-box;
     font-family: 'Indie Flower', cursive;
@@ -39,11 +39,6 @@ input{
     font-size: 20px;
     margin-bottom: 13px;
     width: 103%;
-}
-
-.fivecontainer {
-    display: flex;
-    align-items:flex-end;
 }
 
 .search-column {
