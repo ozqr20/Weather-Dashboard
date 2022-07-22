@@ -49,17 +49,17 @@ var displayWeather = function(weather, city){
 
     var wind = document.createElement("span");
     wind.textContent = "Wind Speed: " + weather.wind.speed + "MPH";
-    wind.classList = "list-group-item";
+    wind.classList = "list-group-item border-0";
     searchedCityEl.appendChild(wind);
 
     var temp = document.createElement("span");
     temp.textContent = "Temperature: " + weather.main.temp + "ºF";
-    temp.classList = "list-group-item";
+    temp.classList = "list-group-item border-0";
     searchedCityEl.appendChild(temp);
 
     var humidity = document.createElement("span");
     humidity.textContent = "Humidity: " + weather.main.humidity + "%";
-    humidity.classList = "list-group-item";
+    humidity.classList = "list-group-item border-0";
     searchedCityEl.appendChild(humidity);
 
     var lon = weather.coord.lon;
@@ -86,7 +86,7 @@ var getUv = function (lon,lat){
 var displayUv = function (data){
     var uvIndex = document.createElement("div");
     uvIndex.textContent = "UV Index: ";
-    uvIndex.classList = "list-group-item"
+    uvIndex.classList = "list-group-item border-0"
 
     uvValue = document.createElement("span");
     uvValue.textContent = data.value;
@@ -125,6 +125,7 @@ var getFiveDays = function(city){
 var displayFiveDays = function(forecast){
     displayFiveEl.textContent = "";
     titleForecastFiveEl.textContent = "5-Days Forecast:";
+   // titleForecastFiveEl.classList = ""
 
     var listDays = forecast.list;
     for ( var i = 5; i < listDays.length; i = i +8){

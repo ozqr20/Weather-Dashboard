@@ -1,6 +1,7 @@
 * {
-    margin: 2px;
+    margin: 2x;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Indie Flower', cursive;
   }
 
@@ -42,7 +43,7 @@ input{
 
 .fivecontainer {
     display: flex;
-    text-align: center;
+    align-items:flex-end;
 }
 
 .search-column {
@@ -50,4 +51,12 @@ input{
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+}
+
+h4 {
+    text-align: center;
+}
+.list-group-item {
+    font-family: "Shadows Into Light";
+    font-size: 25px;
 }
