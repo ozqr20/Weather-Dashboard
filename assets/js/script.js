@@ -11,7 +11,6 @@ var displayFiveEl = document.querySelector("#display-fivedays")
 const apiKey = "1767dcfe210ef96ad104c047ad61f1bb";
 
 
-
 var saveSearch = function(){
     localStorage.setItem("cities", JSON.stringify(cities));
 };
@@ -22,9 +21,9 @@ var cityWeather = function(city){
 
     fetch(apiUrl).then(function(response){
         if(response.ok){
-            console.log(response);
+            //console.log(response);
             response.json().then(function(data){
-                console.log(data);
+                //console.log(data);
                 displayWeather(data,city);
             });
         }else{
@@ -111,7 +110,7 @@ var getFiveDays = function(city){
     fetch(apiUrl).then(function(response){
         if(response.ok){
             response.json().then(function(data){
-                displayFiveDays(data);
+                displayFiveDays(data,city);
             });
         }else{
             alert("Error");
@@ -121,60 +120,79 @@ var getFiveDays = function(city){
         alert("Unable to connect");
     });
 };
-
+//getFiveDays("Orlando");
 
 var displayFiveDays = function(forecast){
     displayFiveEl.textContent = "";
     titleForecastFiveEl.textContent = "5-Days Forecast:";
-    titleForecastFiveEl.classList = "p-3 mb-2 bg-dark text-white";
 
     var listDays = forecast.list;
-    for ( var i = 0; i < listDays.length; i++){
+    for ( var i = 5; i < listDays.length; i = i +8){
         var daily = listDays[i];
 
         var cardContainer = document.createElement("div");
-        cardContainer.classList = "card bg-info text-light m-2";
-        cardContainer.appendChild(cardContainer);
+        cardContainer.classList = "card bg-info text-light m-2 border-0";
 
         var cardDate = document.createElement("h6")
-        cardDate.classList = "card-header text-left";
+        cardDate.classList = "card-header text-center border-0";
         cardDate.textContent = moment.unix(daily.dt).format("MMM D, YYYY");
         cardContainer.appendChild(cardDate);
 
         var cardIcon = document.createElement("img")
-        cardIcon.classList = "card-body text-left";
+        cardIcon.classList = "card-body text-center";
         cardIcon.setAttribute("src", `https://openweathermap.org/img/wn/${daily.weather[0].icon}.png`);
         cardContainer.appendChild(cardIcon);
 
         var cardTemp = document.createElement("span");
-        cardTemp.classList = "card-body text-left";
+        cardTemp.classList = "card-body text-center border-0";
         cardTemp.textContent = "Temp: " + daily.main.temp + "ºF";
         cardContainer.appendChild(cardTemp);
 
         var cardWind = document.createElement("span");
-        cardWind.classList = "card-body text-left";
+        cardWind.classList = "card-body text-center border-0";
         cardWind.textContent = "Wind " + daily.wind.speed + "MPH";
         cardContainer.appendChild(cardWind);
 
         var cardHumidity = document.createElement("span");
-        cardHumidity.classList = "card-body text-left";
+        cardHumidity.classList = "card-body text-center border-0";
         cardHumidity.textContent = "Humidity: " + daily.main.humidity + "%";
         cardContainer.appendChild(cardHumidity);
 
         displayFiveEl.appendChild(cardContainer);
+        
     };
 };
+var pastSearch = function(past){
+    pastEl = document.createElement("button");
+    pastEl.textContent = past;
+    pastEl.classList = "d-flex w-100 btn-light border p-2";
+    pastEl.setAttribute("data-city", past);
+    pastEl.setAttribute("type", "submit");
+
+    historySerchEl.prepend(pastEl);
+}
+var pastHandler = function(event){
+    var city = event.target.getAttribute("data-city");
+    if(city){
+        cityWeather(city);
+        getFiveDays(city);
+    }
+}
 
 var formSubmitHandler = function(event){
     event.preventDefault();
     var city = cityEl.value.trim();
     if(city){
         cityWeather(city);
+        getFiveDays(city);
+        cities.unshift({city});
+        cityEl.value = "";
     } else {
         alert("Enter a city");
     }
     saveSearch();
+    pastSearch(city);
 };
 
-
-InputSearchEl.addEventListener("submit",formSubmitHandler);
+InputSearchEl.addEventListener("submit", formSubmitHandler);
+historySerchEl.addEventListener("click", pastHandler);
