@@ -130,7 +130,7 @@ var displayFiveDays = function(forecast){
         var daily = listDays[i];
 
         var cardContainer = document.createElement("div");
-        cardContainer.classList = "card bg-info text-light m-2 border-0";
+        cardContainer.classList = "card bg-info text-light m-2 border-0cd .";
 
         var cardDate = document.createElement("h5")
         cardDate.classList = "card-header text-center border-0 w-100";
@@ -186,11 +186,12 @@ var formSubmitHandler = function(event){
         getFiveDays(city);
         cities.unshift({city});
         cityEl.value = "";
+        saveSearch();
+        pastSearch(city);
     } else {
         alert("Enter a city");
     }
-    saveSearch();
-    pastSearch(city);
+
 };
 
 InputSearchEl.addEventListener("submit", formSubmitHandler);
