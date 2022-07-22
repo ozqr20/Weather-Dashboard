@@ -130,7 +130,7 @@ var displayFiveDays = function(forecast){
         var daily = listDays[i];
 
         var cardContainer = document.createElement("div");
-        cardContainer.classList = "card bg-info text-light m-2 border-0 w-100";
+        cardContainer.classList = "card bg-info text-light m-2 border-0";
 
         var cardDate = document.createElement("h5")
         cardDate.classList = "card-header text-center border-0 w-100";
