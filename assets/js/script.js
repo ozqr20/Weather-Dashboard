@@ -2,7 +2,6 @@ var cities = []
 var InputSearchEl = document.querySelector("#input-search");
 var cityEl = document.querySelector("#city");
 var historySerchEl = document.querySelector("#history-search-btns");
-var currentWeatherEl = document.querySelector("#current-weather");
 var searchedCityEl = document.querySelector("#searched-city");
 var weatherContainerEl = document.querySelector("#weather-container-now");
 var fiveDaysEl = document.querySelector("#five-days");
@@ -125,7 +124,6 @@ var getFiveDays = function(city){
 var displayFiveDays = function(forecast){
     displayFiveEl.textContent = "";
     titleForecastFiveEl.textContent = "5-Days Forecast:";
-   // titleForecastFiveEl.classList = ""
 
     var listDays = forecast.list;
     for ( var i = 5; i < listDays.length; i = i +8){
